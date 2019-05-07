@@ -1,0 +1,50 @@
+type Query {
+  merchants: [Merchant]!
+  getMerchantById(id: ID!): Merchant!
+}
+
+type Mutation {
+  createMerchant(input: MerchantInput!): Merchant!
+  modifyMerchant(id: ID!, input: MerchantInput!): Merchant!
+}
+
+type Merchant {
+  id: ID!
+  name: String!
+  reseller: Reseller!
+}
+
+type ContactInfo {
+  phone: String!
+  email: String!
+  address: Address!
+}
+
+type Address {
+  country: String!
+  state: String!
+  city: String!
+  address: String!
+  zipCode: String!
+}
+
+input MerchantInput {
+  name: String!
+  resellerId: ID!
+  merchantEmail: String!
+  contactInfo: ContactInfoInput!
+}
+
+input ContactInfoInput {
+  phone: String!
+  email: String!
+  address: AddressInput!
+}
+
+input AddressInput {
+  country: String!
+  state: String!
+  city: String!
+  address: String!
+  zipCode: String!
+}
