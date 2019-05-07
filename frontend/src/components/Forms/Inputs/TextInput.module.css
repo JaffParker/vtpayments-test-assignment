@@ -1,0 +1,11 @@
+.Disabled {
+  border: none;
+  font-weight: bold;
+  border-color: transparent;
+  box-shadow: none;
+  background: none !important;
+}
+
+.Disabled:after {
+  display: none;
+}

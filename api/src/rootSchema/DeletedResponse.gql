@@ -1,0 +1,4 @@
+type DeletedResponse {
+  type: String!
+  id: ID!
+}

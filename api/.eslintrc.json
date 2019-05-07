@@ -1,0 +1,32 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/no-parameter-properties": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      {
+        "allowExpressions": true,
+        "allowTypedFunctionExpressions": true
+      }
+    ],
+    "no-var": "error",
+    "eqeqeq": "error",
+    "@typescript-eslint/array-type": ["warn", "array-simple"]
+  }
+}

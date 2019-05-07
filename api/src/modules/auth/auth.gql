@@ -1,0 +1,13 @@
+type Mutation {
+  signIn(input: SignInInput!): Auth!
+}
+
+type Auth {
+  token: String!
+  user: User!
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}

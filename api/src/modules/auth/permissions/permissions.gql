@@ -1,0 +1,15 @@
+type Query {
+  getPermissions: [Permission]!
+  getPermissionsForUser(userId: ID!): [Permission]!
+}
+type Mutation {
+  grantPermissionToUser(userId: ID!, permissionId: ID!): Boolean
+  revokePermission(userId: ID!, permissionId: ID!): Boolean
+}
+
+type Permission {
+  id: ID!
+  code: String!
+  name: String!
+  description: String!
+}

@@ -1,0 +1,9 @@
+type Mutation {
+  confirmEmail(token: String!): EmailConfirmation!
+  resendConfirmationEmail(userId: ID!): Boolean
+}
+
+type EmailConfirmation {
+  userId: ID!
+  email: String!
+}

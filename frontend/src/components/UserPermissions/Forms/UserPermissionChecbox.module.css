@@ -1,0 +1,17 @@
+.Checkbox {
+  border-radius: 0.25rem;
+  border: none;
+  width: 25px;
+  height: 25px;
+  user-select: none;
+  background-color: #dee2e6;
+  color: #fff;
+  padding: 1px 5px;
+
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+.Checkbox.checked {
+  background-color: #007bff;
+}

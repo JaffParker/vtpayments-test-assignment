@@ -1,0 +1,27 @@
+.loadingLogo,
+.loadingLogo-enter {
+  opacity: 0.01;
+}
+
+.loadingLogo-enter-active {
+  opacity: 1;
+  transition: opacity 3000ms ease-in;
+}
+
+.loadingLogo-leave {
+  opacity: 1;
+}
+
+.loadingLogo-leave-active {
+  opacity: 0.01;
+  transition: opacity 3000ms ease-in;
+}
+
+.loadingLogo-appear {
+  opacity: 0.01;
+}
+
+.loadingLogo-appear-active {
+  opacity: 1;
+  transition: opacity 3000ms ease-in;
+}

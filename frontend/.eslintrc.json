@@ -1,0 +1,42 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["react", "@typescript-eslint", "react-hooks"],
+  "rules": {
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/no-parameter-properties": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      {
+        "allowExpressions": true,
+        "allowTypedFunctionExpressions": true
+      }
+    ],
+    "no-var": "error",
+    "react/jsx-uses-vars": 1,
+    "react/jsx-uses-react": 1,
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/array-type": ["warn", "array-simple"]
+  }
+}

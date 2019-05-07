@@ -1,0 +1,32 @@
+type Query {
+  users: [User]!
+  getUserById(id: ID!): User!
+  signedInUser: User!
+}
+type Mutation {
+  createUser(input: UserInput!): User!
+  modifyUser(id: ID!, input: UserInput!): User!
+  deactivateUser(id: ID!): User!
+  reactivateUser(id: ID!): User!
+}
+
+type User {
+  id: ID!
+  email: String!
+  active: Boolean!
+  emailConfirmed: Boolean!
+
+  profile: UserProfile!
+  permissions: [Permission]!
+}
+
+type UserProfile {
+  firstName: String!
+  lastName: String!
+}
+
+input UserInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+}
