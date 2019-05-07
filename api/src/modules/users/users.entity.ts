@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany } from 'typeorm'
+import { Reseller } from '../resellers/resellers.entity';
+import { Merchant } from '../merchants/merchants.entity';
 
 @Entity('users')
 export class User {
@@ -14,14 +16,17 @@ export class User {
   @Column({ nullable: true })
   password: string
 
-  @Column()
-  merchantId: string
-
   @Column('simple-json', { name: 'profile' })
   profile: {
     firstName: string
     lastName: string
   }
+
+  @OneToMany(type => Reseller, reseller => reseller.user)
+  resellers: Reseller[]
+
+  @OneToMany(type => Merchant, merchant => merchant.user)
+  merchants: Merchant[]
 
   @Column({ default: true })
   active: boolean
