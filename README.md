@@ -113,4 +113,6 @@ Some structure has already been put in place to help you get started. You have t
 * The legibility of the code you wrote (ideally we should be able to read it without your help)
 * Your code style (functional and immutable styles are preferred)
 
+By the way, we already have this feature and simply would like to see how you would approach it. So don't worry about it and take your time!
+
 If you have any questions about the requirements, feel free to contact us. For the frameworks and libraries we use, you have Google and official docs :) Good luck!
