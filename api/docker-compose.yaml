@@ -1,0 +1,17 @@
+version: '3'
+services:
+  mysql:
+    image: "mysql:5.7.24"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "admin"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "password"
+      MYSQL_DATABASE: "vt-terminal"
+    command: --innodb-use-native-aio=0
+    volumes:
+      - database:/var/lib/mysql
+
+volumes:
+  database:
