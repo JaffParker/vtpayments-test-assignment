@@ -1,20 +1,12 @@
 import { Query } from 'react-apollo'
 import { GetLoggedInUserMerchants } from '../../../graphql/queries/GetLoggedInUserMerchants'
-import React, { FC, useContext } from 'react'
-import {
-  AuthContext,
-  UserAuthContextState,
-} from '../../../contexts/AuthContext'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
+import React, { FC } from 'react'
 import { Merchant } from '../../../types/Api'
 import Row from 'reactstrap/lib/Row'
 import { MerchantList } from '../Components/MerchantList'
+import { withRouter } from 'react-router-dom'
 
 const MerchantListContainer: FC = () => {
-  const { user } = useContext(AuthContext) as UserAuthContextState
-
-  const userId = user.id
-
   return (
     <Query<{ getLoggedInUserMerchants: Merchant[] }>
       query={GetLoggedInUserMerchants}

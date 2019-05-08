@@ -4,7 +4,7 @@ import { Merchant } from '../../../types/Api'
 import { Col, Row } from 'reactstrap'
 
 interface MerchantListProps {
-  merchants: Merchant[]
+  merchants: Merchant[] | undefined
 }
 
 export const MerchantList: FC<MerchantListProps> = ({ merchants }) => {
@@ -13,8 +13,8 @@ export const MerchantList: FC<MerchantListProps> = ({ merchants }) => {
   return (
     <Row>
       {merchants.map(merchant => (
-        <Col xs={12} sm={4} className="mb-2">
-          <MerchantCard key={merchant.id} merchant={merchant} />
+        <Col xs={12} sm={4} className="mb-2" key={merchant.id}>
+          <MerchantCard merchant={merchant} />
         </Col>
       ))}
     </Row>
