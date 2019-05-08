@@ -112,6 +112,7 @@ export interface IQuery {
     resellers(): Reseller[] | Promise<Reseller[]>;
     getResellerById(id: string): Reseller | Promise<Reseller>;
     getResellersByUser(userId: string): Reseller[] | Promise<Reseller[]>;
+    getLoggedInUserResellers(): Reseller[] | Promise<Reseller[]>;
     users(): User[] | Promise<User[]>;
     getUserById(id: string): User | Promise<User>;
     signedInUser(): User | Promise<User>;

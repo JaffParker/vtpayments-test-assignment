@@ -1,5 +1,5 @@
 import { Query } from 'react-apollo'
-import { GetResellersByUser } from '../../../graphql/queries/GetResellersByUser'
+import { GetLoggedInUserResellers } from '../../../graphql/queries/GetLoggedInUserResellers'
 import React, { FC, useContext } from 'react'
 import {
   AuthContext,
@@ -16,8 +16,8 @@ const ResellerListContainer: FC<RouteComponentProps> = ({ history }) => {
 
   return (
     // TODO: Don't use any[] figure out how to regenerate Api.ts
-    <Query<{ getResellersByUser: Reseller[] }>
-      query={GetResellersByUser}
+    <Query<{ getLoggedInUserResellers: Reseller[] }>
+      query={GetLoggedInUserResellers}
       variables={{ userId }}
     >
       {({ loading, error, data }) => {
@@ -26,7 +26,7 @@ const ResellerListContainer: FC<RouteComponentProps> = ({ history }) => {
 
         return data ? (
           <ul>
-            {data.getResellersByUser.map(reseller => (
+            {data.getLoggedInUserResellers.map(reseller => (
               <ResellerCard
                 key={reseller.id}
                 onClickRedirection={() =>

@@ -2,6 +2,7 @@ type Query {
   resellers: [Reseller]!
   getResellerById(id: ID!): Reseller!
   getResellersByUser(userId: ID!): [Reseller]!
+  getLoggedInUserResellers: [Reseller]!
 }
 
 type Mutation {

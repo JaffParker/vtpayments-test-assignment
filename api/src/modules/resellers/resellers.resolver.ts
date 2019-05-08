@@ -40,6 +40,12 @@ export class ResellerResolver {
     return await this.resellers.getByUser(userId)
   }
 
+  @Query()
+  @UseGuards(SignedInGuard)
+  async getLoggedInUserResellers(@Context() { user }: GraphqlContext,): Promise<Reseller[]> {
+    return await this.resellers.getByUser(user.id)
+  }
+
   @Mutation()
   @UseGuards(SignedInGuard)
   async createReseller(
