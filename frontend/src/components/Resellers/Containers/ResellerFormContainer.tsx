@@ -1,5 +1,4 @@
 import React, { Fragment, FC, useContext } from 'react'
-import { MiniHeader } from '../../Layout/Views/MiniHeader'
 import { Mutation } from 'react-apollo'
 import { ResellerFormValues, ResellerForm } from '../Forms/ResellerForm'
 import { Reseller, ResellerInput } from '../../../types/Api'

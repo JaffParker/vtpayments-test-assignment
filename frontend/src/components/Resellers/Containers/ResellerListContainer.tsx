@@ -5,10 +5,10 @@ import {
   AuthContext,
   UserAuthContextState,
 } from '../../../contexts/AuthContext'
-import { ResellerCard } from '../Components/ResellerCard'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Reseller } from '../../../types/Api'
-import { Col, Row } from 'reactstrap'
+import { Row } from 'reactstrap'
+import { ResellerList } from '../Components/ResellerList'
 
 const ResellerListContainer: FC<RouteComponentProps> = ({ history }) => {
   const { user } = useContext(AuthContext) as UserAuthContextState
@@ -16,7 +16,6 @@ const ResellerListContainer: FC<RouteComponentProps> = ({ history }) => {
   const userId = user.id
 
   return (
-    // TODO: Don't use any[] figure out how to regenerate Api.ts
     <Query<{ getLoggedInUserResellers: Reseller[] }>
       query={GetLoggedInUserResellers}
       variables={{ userId }}
@@ -24,25 +23,12 @@ const ResellerListContainer: FC<RouteComponentProps> = ({ history }) => {
       {({ loading, error, data }) => {
         if (loading) return 'Loading...'
         if (error) return `Error! ${error.message}`
+        if (!data) return <h5> No Reseller </h5>
 
-        return data ? (
+        return (
           <Row>
-            {data.getLoggedInUserResellers.map(reseller => (
-              <Col xs={12} sm={4} className="mb-2">
-                <ResellerCard
-                  key={reseller.id}
-                  onClickRedirection={() =>
-                    history.push(`/resellers/${reseller.id}`)
-                  }
-                  reseller={reseller}
-                >
-                  {reseller.name}
-                </ResellerCard>
-              </Col>
-            ))}
+            <ResellerList resellers={data.getLoggedInUserResellers} />
           </Row>
-        ) : (
-          <h5> No Reseller </h5>
         )
       }}
     </Query>

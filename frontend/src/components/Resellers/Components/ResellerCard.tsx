@@ -1,21 +1,22 @@
 import React, { FC } from 'react'
 import { Card, CardTitle, CardText, Button } from 'reactstrap'
 import { Reseller } from '../../../types/Api'
+import { Link } from 'react-router-dom'
 
 interface ResellerCardProps {
   reseller: Reseller
-  onClickRedirection: () => void
 }
 
-export const ResellerCard: FC<ResellerCardProps> = ({
-  reseller,
-  onClickRedirection,
-}) => {
+export const ResellerCard: FC<ResellerCardProps> = ({ reseller }) => {
   return (
     <Card body>
-      <CardTitle>{reseller.name}</CardTitle>
+      <CardTitle>
+        <h3>{reseller.name}</h3>
+      </CardTitle>
       <CardText>Reseller id: {reseller.id}</CardText>
-      <Button onClick={onClickRedirection}>More details</Button>
+      <Link className="btn btn-info" to={`/resellers/${reseller.id}`}>
+        More details
+      </Link>
     </Card>
   )
 }

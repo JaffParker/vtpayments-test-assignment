@@ -22,7 +22,6 @@ export interface MerchantInput {
   name: string
   resellerId: string
   merchantEmail: string
-  contactInfo: ContactInfoInput
 }
 
 export interface ResellerInput {
@@ -113,9 +112,11 @@ export interface Permission {
 export interface IQuery {
   merchants(): Merchant[] | Promise<Merchant[]>
   getMerchantById(id: string): Merchant | Promise<Merchant>
+  getLoggedInUserMerchants(): Merchant[] | Promise<Merchant[]>
   resellers(): Reseller[] | Promise<Reseller[]>
   getResellerById(id: string): Reseller | Promise<Reseller>
   getResellersByUser(userId: string): Reseller[] | Promise<Reseller[]>
+  getLoggedInUserResellers(): Reseller[] | Promise<Reseller[]>
   users(): User[] | Promise<User[]>
   getUserById(id: string): User | Promise<User>
   signedInUser(): User | Promise<User>
