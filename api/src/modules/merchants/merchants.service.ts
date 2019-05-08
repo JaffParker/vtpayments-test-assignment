@@ -3,7 +3,7 @@ import { Merchant } from './merchants.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { InputError } from '../../errors/InputError';
-import { MerchantCreationErrors } from '../../types/Errors/MerchantCreationErrors';
+import { MerchantErrors } from '../../types/Errors/MerchantErrors';
 
 type CreateMerchantInput = Pick<Merchant, 'name' | 'reseller' | 'contactInfo' | 'user'>
 
@@ -31,7 +31,7 @@ export class MerchantsService {
 
   async create(input: CreateMerchantInput): Promise<Merchant> {
     if (await this.merchantExists({ name: input.name }))
-      throw new InputError(MerchantCreationErrors.DuplicateMerchant)
+      throw new InputError(MerchantErrors.DuplicateMerchant)
 
     return await this.merchantRepo.save(this.merchantRepo.create(input))
   }

@@ -1,3 +1,3 @@
-export enum ResellerCreationErrors {
+export enum ResellerErrors {
   DuplicateReseller = 'DUPLICATE_RESELLER',
 }

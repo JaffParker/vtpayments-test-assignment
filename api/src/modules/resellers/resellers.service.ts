@@ -3,7 +3,7 @@ import { Reseller } from './Resellers.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { InputError } from '../../errors/InputError';
-import { ResellerCreationErrors } from 'src/types/Errors/ResellerCreationErrors';
+import { ResellerErrors } from 'src/types/Errors/ResellerErrors';
 
 type CreateResellerInput = Pick<Reseller, 'name' | 'user'>
 
@@ -31,7 +31,7 @@ export class ResellersService {
 
   async create(input: CreateResellerInput): Promise<Reseller> {
     if (await this.resellerExists({ name: input.name }))
-      throw new InputError(ResellerCreationErrors.DuplicateReseller)
+      throw new InputError(ResellerErrors.DuplicateReseller)
 
     return await this.resellerRepo.save(this.resellerRepo.create(input))
   }
