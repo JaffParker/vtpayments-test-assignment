@@ -1,10 +1,12 @@
 import gql from 'graphql-tag'
+import { ResellerFragments } from '../fragments/Reseller'
 
 export const GetLoggedInUserResellers = gql`
   query GetLoggedInUserResellers {
     getLoggedInUserResellers {
-      id
-      name
+      ...ResellerSummary
     }
   }
+
+  ${ResellerFragments.summary}
 `
