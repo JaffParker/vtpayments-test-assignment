@@ -15,6 +15,7 @@ import { Merchant } from './Merchants.entity';
 import { MerchantsService } from './merchants.service';
 import { ResellersService } from '../resellers/resellers.service';
 import { UsersService } from '../users/users.service';
+import { MerchantErrors } from 'src/types/Errors/MerchantErrors';
 
 @Resolver('Merchant')
 export class MerchantResolver {
@@ -46,12 +47,12 @@ export class MerchantResolver {
   async createMerchant(
     @Context() { user }: GraphqlContext,
     @Args('input')
-    { name, resellerId, contactInfo, merchantEmail }: any
+    { name, resellerId, merchantEmail }: any
   ): Promise<Merchant> {
     try {
       const merchantUser = await this.users.getByEmail(merchantEmail)
       if(!merchantUser) {
-        throw new InputError(`No user found with email: ${merchantEmail}`);
+        throw new InputError(MerchantErrors.UserNotFound)
       }
       
       const reseller = await this.resellers.getById(resellerId)
@@ -67,7 +68,6 @@ export class MerchantResolver {
       return this.merchants.create({
         name,
         reseller,
-        contactInfo,
         user: merchantUser
       })
     } catch (error) {

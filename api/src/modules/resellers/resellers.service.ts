@@ -18,7 +18,7 @@ export class ResellersService {
   }
 
   async getById(id: string): Promise<Reseller> {
-    return await this.resellerRepo.findOne(id, { relations: ["user"] })
+    return await this.resellerRepo.findOne(id, { relations: ["user", "merchants"] })
   }
 
   async getByUser(userId: string): Promise<Reseller[]> {

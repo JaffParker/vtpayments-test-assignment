@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { InputError } from '../../errors/InputError';
 import { MerchantErrors } from '../../types/Errors/MerchantErrors';
 
-type CreateMerchantInput = Pick<Merchant, 'name' | 'reseller' | 'contactInfo' | 'user'>
+type CreateMerchantInput = Pick<Merchant, 'name' | 'reseller' | 'user'>
 
 @Injectable()
 export class MerchantsService {

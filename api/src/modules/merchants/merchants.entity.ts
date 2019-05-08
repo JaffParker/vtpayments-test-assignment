@@ -11,19 +11,6 @@ export class Merchant {
   @Index()
   name: string
 
-  @Column('simple-json', { name: 'contactInfo' })
-  contactInfo: {
-    phone: string
-    email: string
-    address: {
-      country: string
-      state: string
-      city: string
-      address: string
-      zipCode: string
-    }
-  }
-
   @ManyToOne(type => Reseller, reseller => reseller.merchants)
   reseller: Reseller
 

@@ -13,17 +13,10 @@ export interface AddressInput {
     zipCode: string;
 }
 
-export interface ContactInfoInput {
-    phone: string;
-    email: string;
-    address: AddressInput;
-}
-
 export interface MerchantInput {
     name: string;
     resellerId: string;
     merchantEmail: string;
-    contactInfo: ContactInfoInput;
 }
 
 export interface ResellerInput {
@@ -57,12 +50,6 @@ export interface Address {
 export interface Auth {
     token: string;
     user: User;
-}
-
-export interface ContactInfo {
-    phone: string;
-    email: string;
-    address: Address;
 }
 
 export interface DeletedResponse {
