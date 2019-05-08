@@ -4,6 +4,7 @@ import { Loading } from '../Misc/Loading'
 
 const HomeRoute = lazy(() => import('./Routes/HomeRoute'))
 const ResellersRoute = lazy(() => import('./Routes/ResellersRoute'))
+const ResellerDetailRoute = lazy(() => import('./Routes/ResellerDetailRoute'))
 const MerchantsRoute = lazy(() => import('./Routes/MerchantsRoute'))
 
 export const MainRouter: FC = () => (
@@ -18,6 +19,11 @@ export const MainRouter: FC = () => (
       <Route
         path="/resellers"
         component={props => <ResellersRoute {...props} />}
+        exact
+      />
+      <Route
+        path="/resellers/:resellerId"
+        component={props => <ResellerDetailRoute {...props} />}
         exact
       />
     </Switch>
