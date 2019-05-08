@@ -10,7 +10,7 @@ export default function ResellersRoute(): JSX.Element {
         <ResellerFormContainer />
       </Col>
       <hr />
-      <Col sm="12" md={{ size: 4 }}>
+      <Col>
         <ResellerListContainer />
       </Col>
     </>

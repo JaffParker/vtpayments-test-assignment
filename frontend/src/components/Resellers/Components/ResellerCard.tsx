@@ -15,7 +15,7 @@ export const ResellerCard: FC<ResellerCardProps> = ({
     <Card body>
       <CardTitle>{reseller.name}</CardTitle>
       <CardText>Reseller id: {reseller.id}</CardText>
-      <Button onClick={onClickRedirection}>Go somewhere</Button>
+      <Button onClick={onClickRedirection}>More details</Button>
     </Card>
   )
 }
