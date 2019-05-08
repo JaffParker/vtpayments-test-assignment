@@ -1,6 +1,7 @@
 type Query {
   merchants: [Merchant]!
   getMerchantById(id: ID!): Merchant!
+  getLoggedInUserMerchants:[Merchant]
 }
 
 type Mutation {

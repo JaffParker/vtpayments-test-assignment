@@ -21,6 +21,10 @@ export class MerchantsService {
     return await this.merchantRepo.findOne(id, { relations: ['user']})
   }
 
+  async getByUser(userId: string): Promise<Merchant[]> {
+    return await this.merchantRepo.find({ user: {id: userId }})
+  }
+
   async merchantExists(params: Partial<Merchant>): Promise<boolean> {
     return (await this.merchantRepo.count(params)) > 0
   }

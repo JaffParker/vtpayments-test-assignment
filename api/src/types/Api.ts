@@ -108,6 +108,7 @@ export interface Permission {
 export interface IQuery {
     merchants(): Merchant[] | Promise<Merchant[]>;
     getMerchantById(id: string): Merchant | Promise<Merchant>;
+    getLoggedInUserMerchants(): Merchant[] | Promise<Merchant[]>;
     resellers(): Reseller[] | Promise<Reseller[]>;
     getResellerById(id: string): Reseller | Promise<Reseller>;
     getResellersByUser(userId: string): Reseller[] | Promise<Reseller[]>;

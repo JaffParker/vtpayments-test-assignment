@@ -35,6 +35,12 @@ export class MerchantResolver {
     return await this.merchants.getById(id)
   }
 
+  @Query()
+  @UseGuards(SignedInGuard)
+  async getLoggedInUserMerchants(@Context() { user }: GraphqlContext): Promise<Merchant[]> {
+    return await this.merchants.getByUser(user.id)
+  }
+
   @Mutation()
   @UseGuards(SignedInGuard)
   async createMerchant(
