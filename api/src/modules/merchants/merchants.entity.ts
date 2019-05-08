@@ -1,6 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, Column, Index, OneToOne } from 'typeorm'
-import { Reseller } from '../resellers/resellers.entity';
-import { User } from '../users/users.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  Column,
+  Index,
+  OneToOne,
+} from 'typeorm'
+import { Reseller } from '../resellers/resellers.entity'
+import { User } from '../users/users.entity'
 
 @Entity('merchants')
 export class Merchant {

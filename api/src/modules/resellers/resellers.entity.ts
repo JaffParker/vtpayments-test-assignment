@@ -1,6 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, JoinColumn, ManyToOne } from 'typeorm'
-import { Merchant } from 'src/modules/merchants/merchants.entity';
-import { User } from '../users/users.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  ManyToOne,
+} from 'typeorm'
+import { Merchant } from 'src/modules/merchants/merchants.entity'
+import { User } from '../users/users.entity'
 
 @Entity('resellers')
 export class Reseller {
@@ -11,8 +17,8 @@ export class Reseller {
   name: string
 
   @OneToMany(type => Merchant, merchant => merchant.reseller)
-  merchants: Merchant[];
+  merchants: Merchant[]
 
   @ManyToOne(type => User, user => user.resellers)
-  user: User;
+  user: User
 }

@@ -14,8 +14,8 @@ import { UserInputError } from 'apollo-server-core'
 import { GraphqlContext } from '../../types/app/GraphqlContext'
 import { UserInput, Permission, User } from '../../types/Api'
 import { PermissionsService } from '../auth/permissions/permissions.service'
-import { Reseller } from './Resellers.entity';
-import { ResellersService } from './resellers.service';
+import { Reseller } from './Resellers.entity'
+import { ResellersService } from './resellers.service'
 
 @Resolver('Reseller')
 export class ResellerResolver {
@@ -36,13 +36,17 @@ export class ResellerResolver {
   }
 
   @Query()
-  async getResellersByUser(@Args('userId') userId: string): Promise<Reseller[]> {
+  async getResellersByUser(
+    @Args('userId') userId: string,
+  ): Promise<Reseller[]> {
     return await this.resellers.getByUser(userId)
   }
 
   @Query()
   @UseGuards(SignedInGuard)
-  async getLoggedInUserResellers(@Context() { user }: GraphqlContext,): Promise<Reseller[]> {
+  async getLoggedInUserResellers(@Context() { user }: GraphqlContext): Promise<
+    Reseller[]
+  > {
     return await this.resellers.getByUser(user.id)
   }
 
@@ -51,12 +55,12 @@ export class ResellerResolver {
   async createReseller(
     @Context() { user }: GraphqlContext,
     @Args('input')
-    { name }: any
+    { name }: any,
   ): Promise<Reseller> {
     try {
       return this.resellers.create({
         name,
-        user
+        user,
       })
     } catch (error) {
       if (error instanceof InputError) {
@@ -76,18 +80,18 @@ export class ResellerResolver {
     { name }: any,
   ): Promise<Reseller> {
     const reseller = await this.resellers.getById(id)
-    
-    if(!reseller) {
-      throw new InputError('Reseller not found');
+
+    if (!reseller) {
+      throw new InputError('Reseller not found')
     }
 
-    if(reseller.user.id !== user.id) {
-      throw new UnauthorizedException();
+    if (reseller.user.id !== user.id) {
+      throw new UnauthorizedException()
     }
 
     return await this.resellers.update(id, {
       name,
-      user
+      user,
     })
   }
 }

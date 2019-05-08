@@ -15,8 +15,8 @@ import { GqlObject } from '../rootSchema/Object'
 import { GqlDate } from '../rootSchema/Date'
 import { APP_GUARD } from '@nestjs/core'
 import { HasPermissions } from './auth/guards/HasPermissions'
-import { MerchantsModule } from './merchants/merchants.module';
-import { ResellersModule } from './resellers/resellers.module';
+import { MerchantsModule } from './merchants/merchants.module'
+import { ResellersModule } from './resellers/resellers.module'
 
 @Module({
   imports: [
@@ -44,9 +44,7 @@ import { ResellersModule } from './resellers/resellers.module';
             ? `${__dirname}/**/*.entity.js`
             : `${__dirname}/**/*.entity.ts`,
         ],
-        migrations: [
-          "src/migrations/**/*.ts"
-       ],
+        migrations: ['src/migrations/**/*.ts'],
       }),
       inject: [ConfigService],
     }),

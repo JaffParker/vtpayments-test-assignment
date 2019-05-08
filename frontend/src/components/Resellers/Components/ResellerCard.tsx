@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Card, CardTitle, CardText, Button } from 'reactstrap'
+import { Card, CardTitle, CardText } from 'reactstrap'
 import { Reseller } from '../../../types/Api'
 import { Link } from 'react-router-dom'
 

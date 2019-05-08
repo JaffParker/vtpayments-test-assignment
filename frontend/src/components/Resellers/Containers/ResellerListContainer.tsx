@@ -5,12 +5,11 @@ import {
   AuthContext,
   UserAuthContextState,
 } from '../../../contexts/AuthContext'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Reseller } from '../../../types/Api'
 import { Row } from 'reactstrap'
 import { ResellerList } from '../Components/ResellerList'
 
-const ResellerListContainer: FC<RouteComponentProps> = ({ history }) => {
+const ResellerListContainer: FC = () => {
   const { user } = useContext(AuthContext) as UserAuthContextState
 
   const userId = user.id
@@ -25,14 +24,10 @@ const ResellerListContainer: FC<RouteComponentProps> = ({ history }) => {
         if (error) return `Error! ${error.message}`
         if (!data) return <h5> No Reseller </h5>
 
-        return (
-          <Row>
-            <ResellerList resellers={data.getLoggedInUserResellers} />
-          </Row>
-        )
+        return <ResellerList resellers={data.getLoggedInUserResellers} />
       }}
     </Query>
   )
 }
 
-export default withRouter(ResellerListContainer)
+export default ResellerListContainer

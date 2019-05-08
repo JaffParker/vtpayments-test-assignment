@@ -5,7 +5,8 @@ import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { ResellerDetailsRouterProps } from '../../Routers/Routes/ResellerDetailRoute'
 import { Reseller } from '../../../types/Api'
 import { MerchantList } from '../../Merchants/Components/MerchantList'
-import { ResellerMerchantFormContainer } from './ResellerMarchantFormContainer'
+import { ResellerMerchantFormContainer } from './ResellerMerchantFormContainer'
+import { Row } from 'reactstrap'
 
 const ResellerDetailContainer: FC<
   RouteComponentProps<ResellerDetailsRouterProps>
@@ -30,7 +31,9 @@ const ResellerDetailContainer: FC<
               <ResellerMerchantFormContainer resellerId={id} />
               <hr />
               <h2 className="mb-3">Existing Merchants</h2>
-              <MerchantList merchants={merchants} />
+              <Row>
+                <MerchantList merchants={merchants} />
+              </Row>
             </div>
           )
         }}

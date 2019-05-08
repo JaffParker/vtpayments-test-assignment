@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { Merchant } from './merchants.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { InputError } from '../../errors/InputError';
-import { MerchantErrors } from '../../types/Errors/MerchantErrors';
+import { Injectable } from '@nestjs/common'
+import { Merchant } from './merchants.entity'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm'
+import { InputError } from '../../errors/InputError'
+import { MerchantErrors } from '../../types/Errors/MerchantErrors'
 
 type CreateMerchantInput = Pick<Merchant, 'name' | 'reseller' | 'user'>
 
@@ -18,11 +18,11 @@ export class MerchantsService {
   }
 
   async getById(id: string): Promise<Merchant> {
-    return await this.merchantRepo.findOne(id, { relations: ['user']})
+    return await this.merchantRepo.findOne(id, { relations: ['user'] })
   }
 
   async getByUser(userId: string): Promise<Merchant[]> {
-    return await this.merchantRepo.find({ user: {id: userId }})
+    return await this.merchantRepo.find({ user: { id: userId } })
   }
 
   async merchantExists(params: Partial<Merchant>): Promise<boolean> {

@@ -1,4 +1,4 @@
-import React, { Fragment, FC, useContext } from 'react'
+import React, { Fragment, FC } from 'react'
 import { Mutation } from 'react-apollo'
 import { ResellerFormValues, ResellerForm } from '../Forms/ResellerForm'
 import { Reseller, ResellerInput } from '../../../types/Api'

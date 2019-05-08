@@ -29,7 +29,7 @@ export const UserPermissionsContainer: FC<UserPermissionsContainerProps> = ({
       query={GetPermissionsAndForUser}
       variables={{ userId }}
     >
-      {({ data, loading, error }) => {
+      {({ data, loading }) => {
         if (loading) return <Loading />
         if (data) {
           const grantedPermissionIds = data.getPermissionsForUser.map(

@@ -15,7 +15,7 @@ interface UserPermissionChecboxProps {
 }
 
 export const UserPermissionChecbox: React.FC<UserPermissionChecboxProps> = ({
-  permission: { id, name, description },
+  permission: { id, name },
   active,
   onChange,
 }) => {

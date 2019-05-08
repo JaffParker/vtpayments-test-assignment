@@ -20,7 +20,8 @@
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'test@host.com',1,'$2a$10$rYRtv6Ttaa5d3TdYUrpcLOXNMK7mfdrwtimjBpRrVCK/MpIAsWbq6',1,'{\"firstName\":\"Andrey\",\"lastName\":\"Kamozin\"}',1);
+INSERT INTO `users` (`email`, `emailConfirmed`, `password`, `profile`, `active`) VALUES ('test@host.com',1,'$2a$10$rYRtv6Ttaa5d3TdYUrpcLOXNMK7mfdrwtimjBpRrVCK/MpIAsWbq6','{\"firstName\":\"Andrey\",\"lastName\":\"Kamozin\"}',1);
+INSERT INTO `users` (`email`, `emailConfirmed`, `password`, `profile`, `active`) VALUES ('test2@host.com',1,'$2a$10$rYRtv6Ttaa5d3TdYUrpcLOXNMK7mfdrwtimjBpRrVCK/MpIAsWbq6','{\"firstName\":\"Andrey2\",\"lastName\":\"Kamozin2\"}',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
