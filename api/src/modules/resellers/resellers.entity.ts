@@ -13,7 +13,7 @@ export class Reseller {
   @PrimaryGeneratedColumn()
   id: string
 
-  @Column({ unique: true })
+  @Column({ unique: true, nullable: false })
   name: string
 
   @OneToMany(type => Merchant, merchant => merchant.reseller)

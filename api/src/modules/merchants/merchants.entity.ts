@@ -6,7 +6,7 @@ export class Merchant {
   @PrimaryGeneratedColumn()
   id: string
 
-  @Column({ unique: true })
+  @Column({ unique: true, nullable: false })
   name: string
 
   @ManyToOne(type => Reseller, reseller => reseller.merchants)

@@ -1,0 +1,21 @@
+type Query {
+  merchants: [Merchant]!
+  getMerchantById(id: ID!): Merchant!
+  getMerchantByReseller(reseller: ID!): [Merchant]!
+}
+
+type Mutation {
+  createMerchant(input: MerchantInput!): Merchant!
+  updateMerchant(id: ID!, input: MerchantInput!): Merchant!
+}
+
+type Merchant {
+  id: ID!
+  name: String!
+  reseller: Reseller!
+}
+
+input MerchantInput {
+  name: String!
+  resellerId: ID!
+}
