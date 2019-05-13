@@ -14,7 +14,7 @@ export class MerchantResolver {
     private resellers: ResellersService,
   ) {}
 
-  @Query()
+  @Query('merchants')
   @UseGuards(SignedInGuard)
   async getMerchants(): Promise<Merchant[]> {
     return await this.merchants.getAll()

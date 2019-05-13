@@ -13,6 +13,15 @@ export interface AddressInput {
     zipCode: string;
 }
 
+export interface MerchantInput {
+    name: string;
+    resellerId: string;
+}
+
+export interface ResellerInput {
+    name: string;
+}
+
 export interface SetUserPasswordInput {
     id: string;
     password: string;
@@ -52,8 +61,18 @@ export interface EmailConfirmation {
     email: string;
 }
 
+export interface Merchant {
+    id: string;
+    name: string;
+    reseller: Reseller;
+}
+
 export interface IMutation {
     signIn(input: SignInInput): Auth | Promise<Auth>;
+    createMerchant(input: MerchantInput): Merchant | Promise<Merchant>;
+    updateMerchant(id: string, input: MerchantInput): Merchant | Promise<Merchant>;
+    createReseller(input: ResellerInput): Reseller | Promise<Reseller>;
+    updateReseller(id: string, input: ResellerInput): Reseller | Promise<Reseller>;
     createUser(input: UserInput): User | Promise<User>;
     modifyUser(id: string, input: UserInput): User | Promise<User>;
     deactivateUser(id: string): User | Promise<User>;
@@ -73,12 +92,25 @@ export interface Permission {
 }
 
 export interface IQuery {
+    merchants(): Merchant[] | Promise<Merchant[]>;
+    getMerchantById(id: string): Merchant | Promise<Merchant>;
+    getMerchantByReseller(reseller: string): Merchant[] | Promise<Merchant[]>;
+    resellers(): Reseller[] | Promise<Reseller[]>;
+    getResellerById(id: string): Reseller | Promise<Reseller>;
+    getResellersByUser(userId: string): Reseller[] | Promise<Reseller[]>;
     users(): User[] | Promise<User[]>;
     getUserById(id: string): User | Promise<User>;
     signedInUser(): User | Promise<User>;
     getPermissions(): Permission[] | Promise<Permission[]>;
     getPermissionsForUser(userId: string): Permission[] | Promise<Permission[]>;
     temp__(): boolean | Promise<boolean>;
+}
+
+export interface Reseller {
+    id: string;
+    name: string;
+    merchants?: Merchant[];
+    user: User;
 }
 
 export interface User {

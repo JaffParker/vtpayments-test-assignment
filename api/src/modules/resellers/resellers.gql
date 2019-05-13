@@ -12,7 +12,7 @@ type Mutation {
 type Reseller {
   id: ID!
   name: String!
-  merchants: [Merchant]!
+  merchants: [Merchant]
   user: User!
 }
 

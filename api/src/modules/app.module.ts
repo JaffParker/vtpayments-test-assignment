@@ -15,7 +15,8 @@ import { GqlObject } from '../rootSchema/Object'
 import { GqlDate } from '../rootSchema/Date'
 import { APP_GUARD } from '@nestjs/core'
 import { HasPermissions } from './auth/guards/HasPermissions'
-import { MerchantsModule } from './merchants/merchants.module';
+import { MerchantsModule } from './merchants/merchants.module'
+import { ResellersModule } from './resellers/resellers.module'
 
 @Module({
   imports: [
@@ -100,6 +101,7 @@ import { MerchantsModule } from './merchants/merchants.module';
     UsersModule,
     AuthModule,
     MerchantsModule,
+    ResellersModule,
   ],
   providers: [
     {
