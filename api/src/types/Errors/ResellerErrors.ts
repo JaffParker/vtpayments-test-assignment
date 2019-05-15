@@ -1,3 +1,3 @@
 export enum ResellerErrors {
-  DuplicateReseller = 'DUPLICATE_RESELLER',
+  ExistingReseller = 'Reseller already exists',
 }

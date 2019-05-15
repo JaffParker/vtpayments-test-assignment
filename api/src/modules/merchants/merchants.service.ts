@@ -35,7 +35,7 @@ export class MerchantsService {
 
   async create(input: CreateMerchantInput): Promise<Merchant> {
     if (await this.merchantExists({ name: input.name }))
-      throw new InputError(MerchantErrors.DuplicateMerchant)
+      throw new InputError(MerchantErrors.ExistingMerchant)
 
     return await this.merchantRepo.save(this.merchantRepo.create(input))
   }

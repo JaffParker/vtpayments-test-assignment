@@ -1,3 +1,3 @@
 export enum MerchantErrors {
-  DuplicateMerchant = 'DUPLICATE_MERCHANT',
+  ExistingMerchant = 'Merchant already exists.',
 }
