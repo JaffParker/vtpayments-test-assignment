@@ -32,7 +32,9 @@ export class ResellersService {
   }
 
   async getByUser(userId: string): Promise<Reseller[]> {
-    return await this.resellerRepo.find({ user: { id: userId } })
+    return await this.resellerRepo.find({
+      user: { id: userId },
+    })
   }
 
   async create(input: CreateResellerInput): Promise<Reseller> {

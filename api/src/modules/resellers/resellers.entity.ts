@@ -16,6 +16,9 @@ export class Reseller {
   @Column({ unique: true, nullable: false })
   name: string
 
+  @Column()
+  userId: string
+
   @OneToMany(type => Merchant, merchant => merchant.reseller)
   merchants: Merchant[]
 

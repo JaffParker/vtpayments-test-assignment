@@ -95,6 +95,7 @@ export interface IQuery {
     merchants(): Merchant[] | Promise<Merchant[]>;
     getMerchantById(id: string): Merchant | Promise<Merchant>;
     getMerchantByReseller(reseller: string): Merchant[] | Promise<Merchant[]>;
+    getMerchantsByUser(): Merchant[] | Promise<Merchant[]>;
     resellers(): Reseller[] | Promise<Reseller[]>;
     getResellerById(id: string): Reseller | Promise<Reseller>;
     getResellersByUser(userId: string): Reseller[] | Promise<Reseller[]>;

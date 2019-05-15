@@ -1,7 +1,8 @@
 type Query {
   merchants: [Merchant]!
   getMerchantById(id: ID!): Merchant!
-  getMerchantByReseller(reseller: ID!): [Merchant]!
+  getMerchantByReseller(reseller: ID!): [Merchant]
+  getMerchantsByUser: [Merchant]
 }
 
 type Mutation {

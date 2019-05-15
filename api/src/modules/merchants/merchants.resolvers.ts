@@ -32,6 +32,22 @@ export class MerchantResolver {
     return await this.merchants.getByReseller(resellerId)
   }
 
+  @Query()
+  async getMerchantsByUser(
+    @Context() {user}: GraphqlContext,
+  ): Promise<Merchant[]> {
+    const usersResellers = await this.resellers.getByUser(user.id)
+    const usersMerchants =[];
+    for(let reseller of usersResellers) {
+      if(reseller.userId == user.id){
+        const resellerArray = await this.getMerchantByReseller(reseller.id)
+        usersMerchants.push(...resellerArray)
+      }
+    }
+    console.log(usersMerchants)
+    return usersMerchants;
+  }
+
   @Mutation()
   @UseGuards(SignedInGuard)
   async createMerchant(
