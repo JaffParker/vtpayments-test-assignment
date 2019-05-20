@@ -26,24 +26,26 @@ import { MerchantsModule } from './merchants/merchants.module';
       ),
     ),
     TypeOrmModule.forRootAsync({
-      useFactory: (config: ConfigService) => ({
-        name: 'default',
-        type: 'mysql',
-        host: config.get('db.host'),
-        port: config.get('db.port'),
-        database: config.get('db.database'),
-        username: config.get('db.username'),
-        password: config.get('db.password'),
-        synchronize: config.get('db.synchronize'),
-        logging: !config.get('app').isProduction()
-          ? ['query', 'error', 'info', 'schema', 'warn']
-          : ['error', 'warn'],
-        entities: [
-          config.get('app.interpreter') === 'js'
-            ? `${__dirname}/**/*.entity.js`
-            : `${__dirname}/**/*.entity.ts`,
-        ],
-      }),
+      useFactory: (config: ConfigService) => {
+        return ({
+          type: 'mysql',
+          name: 'default',
+          host: config.get('db.host'),
+          port: config.get('db.port'),
+          database: config.get('db.database'),
+          username: config.get('db.username'),
+          password: config.get('db.password'),
+          synchronize: config.get('db.synchronize'),
+          logging: !config.get('app').isProduction()
+            ? ['query', 'error', 'info', 'schema', 'warn']
+            : ['error', 'warn'],
+          entities: [
+            config.get('app.interpreter') === 'js'
+              ? `${__dirname}/**/*.entity.js`
+              : `${__dirname}/**/*.entity.ts`,
+          ],
+        })
+      },
       inject: [ConfigService],
     }),
     GraphQLModule.forRootAsync({
@@ -108,4 +110,4 @@ import { MerchantsModule } from './merchants/merchants.module';
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }

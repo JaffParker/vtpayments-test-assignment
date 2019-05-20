@@ -15,11 +15,6 @@ export const MainRouter: FC = () => (
         component={props => <MerchantsRoute {...props} />}
         exact
       />
-      <Route
-        path="/resellers"
-        component={props => <ResellersRoute {...props} />}
-        exact
-      />
     </Switch>
   </Suspense>
 )

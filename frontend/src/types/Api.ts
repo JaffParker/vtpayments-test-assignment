@@ -49,8 +49,8 @@ export interface CreditCardInput {
 }
 
 export interface MerchantContactInfoInput {
-  phone: string
-  address: AddressInput
+  phone?: string
+  address?: AddressInput
 }
 
 export interface MerchantCustomerContactInfoInput {
@@ -118,7 +118,7 @@ export interface UserInput {
   email: string
   firstName: string
   lastName: string
-  merchantId: string
+  merchant: MerchantInput
 }
 
 export interface Address {

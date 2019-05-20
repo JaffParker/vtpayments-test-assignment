@@ -13,6 +13,18 @@ export interface AddressInput {
     zipCode: string;
 }
 
+export interface MerchantContactInfoInput {
+    phone: string;
+    address: AddressInput;
+}
+
+export interface MerchantInput {
+    name?: string;
+    isReseller?: boolean;
+    resellerId: string;
+    contactInfo: MerchantContactInfoInput;
+}
+
 export interface SetUserPasswordInput {
     id: string;
     password: string;
@@ -52,8 +64,22 @@ export interface EmailConfirmation {
     email: string;
 }
 
+export interface Merchant {
+    id: string;
+    name?: string;
+    isReseller?: boolean;
+    resellerId: string;
+    contactInfo: MerchantContactInfo;
+}
+
+export interface MerchantContactInfo {
+    phone: string;
+    address: Address;
+}
+
 export interface IMutation {
     signIn(input: SignInInput): Auth | Promise<Auth>;
+    createMerchant(input: MerchantInput): Merchant | Promise<Merchant>;
     createUser(input: UserInput): User | Promise<User>;
     modifyUser(id: string, input: UserInput): User | Promise<User>;
     deactivateUser(id: string): User | Promise<User>;
@@ -86,6 +112,7 @@ export interface User {
     email: string;
     active: boolean;
     emailConfirmed: boolean;
+    merchant?: Merchant;
     profile: UserProfile;
     permissions?: Permission[];
 }

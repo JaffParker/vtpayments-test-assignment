@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
+import { Merchant } from './../merchants/merchants.entity'
 
 @Entity('users')
 export class User {
@@ -14,8 +15,8 @@ export class User {
   @Column({ nullable: true })
   password: string
 
-  @Column()
-  merchantId: string
+  @ManyToOne(() => Merchant, null, { nullable: true })
+  merchant: Merchant;
 
   @Column('simple-json', { name: 'profile' })
   profile: {
