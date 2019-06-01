@@ -8,12 +8,13 @@ import { MerchantForm } from '../../Merchants/Form/MerchantForm'
 import { CreateMerchantInput } from '../../../../../api/src/types/Api'
 import Collapsible from 'react-collapsible'
 import '../../../sass/main.scss'
+import { SelectEditMerchant } from '../../Merchants/Input/SelectEditMerchant'
 
 export const MerchantContainer: FC = () => {
   const { createMerchant } = useContext(MerchantContext) as MerchantContext
   const { user } = useContext(AuthContext) as UserAuthState
   return (
-    <div>
+    <Fragment>
       <Collapsible trigger="Create new Merchant">
         <Mutation<
           { createMerchant: CreateMerchantInput },
@@ -42,6 +43,9 @@ export const MerchantContainer: FC = () => {
           }}
         </Mutation>
       </Collapsible>
-    </div>
+      <Collapsible trigger="Edit a merchant">
+        <SelectEditMerchant />
+      </Collapsible>
+    </Fragment>
   )
 }

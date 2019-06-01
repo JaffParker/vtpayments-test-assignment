@@ -3,20 +3,20 @@ import Query from 'react-apollo/Query'
 import { AuthContext } from '../../../contexts/AuthContext'
 import { UserAuthState } from '../../../reducers/auth'
 import { SelectInput } from '../../Forms/Inputs/SelectInput'
-import { GetAllResellersByUser } from '../../../graphql/queries/Reseller/GetAllResellersByUser'
+import { GetAllMerchantsByUser } from '../../../graphql/queries/Merchant/GetAllResellersByUser'
 
-export const SelectResellerInput: FC<any> = ({ ...props }) => {
+export const SelectMerchantInput: FC<any> = ({ ...props }) => {
   const { user } = useContext(AuthContext) as UserAuthState
   let userId = user.id
 
   return (
-    <Query query={GetAllResellersByUser} variables={{ userId }}>
+    <Query query={GetAllMerchantsByUser} variables={{ userId }}>
       {({ loading, error, data }) => {
         if (loading || error) return null
 
         let a: any[] = []
 
-        data.getAllResellersByUser.map(e => {
+        data.getAllMerchantsByUser.map(e => {
           a.push({
             value: e.id,
             label: e.name,
@@ -26,7 +26,8 @@ export const SelectResellerInput: FC<any> = ({ ...props }) => {
         return (
           <Fragment>
             <SelectInput
-              name="resellerId"
+              onChange={props.selectOnChange}
+              name="id"
               placeholder={props.name}
               options={a}
             />

@@ -38,6 +38,19 @@ export interface CreateResellerInput {
     zipCode: string;
 }
 
+export interface EditMerchantInput {
+    userId: string;
+    resellerId: string;
+    isReseller: boolean;
+    name: string;
+    phone: string;
+    country: string;
+    state: string;
+    city: string;
+    address: string;
+    zipCode: string;
+}
+
 export interface SetUserPasswordInput {
     id: string;
     password: string;
@@ -93,17 +106,18 @@ export interface Merchant {
 
 export interface IMutation {
     signIn(input: SignInInput): Auth | Promise<Auth>;
+    createMerchant(input: CreateMerchantInput): Merchant | Promise<Merchant>;
+    createReseller(input: CreateResellerInput): Merchant | Promise<Merchant>;
+    editMerchant(input: EditMerchantInput): Merchant | Promise<Merchant>;
     createUser(input: UserInput): User | Promise<User>;
     modifyUser(id: string, input: UserInput): User | Promise<User>;
     deactivateUser(id: string): User | Promise<User>;
     reactivateUser(id: string): User | Promise<User>;
-    createMerchant(input: CreateMerchantInput): Merchant | Promise<Merchant>;
-    createReseller(input: CreateResellerInput): Merchant | Promise<Merchant>;
     confirmEmail(token: string): EmailConfirmation | Promise<EmailConfirmation>;
     resendConfirmationEmail(userId: string): boolean | Promise<boolean>;
-    setUserPassword(input: SetUserPasswordInput): boolean | Promise<boolean>;
     grantPermissionToUser(userId: string, permissionId: string): boolean | Promise<boolean>;
     revokePermission(userId: string, permissionId: string): boolean | Promise<boolean>;
+    setUserPassword(input: SetUserPasswordInput): boolean | Promise<boolean>;
 }
 
 export interface Permission {
@@ -114,11 +128,11 @@ export interface Permission {
 }
 
 export interface IQuery {
+    getAllResellersByUser(userId: string): Merchant[] | Promise<Merchant[]>;
+    getAllMerchantsByUser(userId: string): Merchant[] | Promise<Merchant[]>;
     users(): User[] | Promise<User[]>;
     getUserById(id: string): User | Promise<User>;
     signedInUser(): User | Promise<User>;
-    getAllResellersByUser(userId: string): Merchant[] | Promise<Merchant[]>;
-    getAllMerchantsByUser(userId: string): Merchant[] | Promise<Merchant[]>;
     getPermissions(): Permission[] | Promise<Permission[]>;
     getPermissionsForUser(userId: string): Permission[] | Promise<Permission[]>;
     temp__(): boolean | Promise<boolean>;

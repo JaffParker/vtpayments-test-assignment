@@ -27,6 +27,7 @@ export const SelectInput: FC<SelectInputProps> = ({
   return (
     <Fragment>
       <BasicSelect
+        {...props}
         field={name}
         fieldState={fieldState}
         fieldApi={fieldApi}
