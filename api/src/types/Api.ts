@@ -13,6 +13,31 @@ export interface AddressInput {
     zipCode: string;
 }
 
+export interface CreateMerchantInput {
+    userId: string;
+    resellerId: string;
+    isReseller: boolean;
+    name: string;
+    phone: string;
+    country: string;
+    state: string;
+    city: string;
+    address: string;
+    zipCode: string;
+}
+
+export interface CreateResellerInput {
+    userId: string;
+    isReseller: boolean;
+    name: string;
+    phone: string;
+    country: string;
+    state: string;
+    city: string;
+    address: string;
+    zipCode: string;
+}
+
 export interface SetUserPasswordInput {
     id: string;
     password: string;
@@ -52,12 +77,28 @@ export interface EmailConfirmation {
     email: string;
 }
 
+export interface Merchant {
+    id: string;
+    userId: string;
+    name: string;
+    isReseller: boolean;
+    resellerId: string;
+    phone: string;
+    country: string;
+    state: string;
+    city: string;
+    address: string;
+    zipCode: string;
+}
+
 export interface IMutation {
     signIn(input: SignInInput): Auth | Promise<Auth>;
     createUser(input: UserInput): User | Promise<User>;
     modifyUser(id: string, input: UserInput): User | Promise<User>;
     deactivateUser(id: string): User | Promise<User>;
     reactivateUser(id: string): User | Promise<User>;
+    createMerchant(input: CreateMerchantInput): Merchant | Promise<Merchant>;
+    createReseller(input: CreateResellerInput): Merchant | Promise<Merchant>;
     confirmEmail(token: string): EmailConfirmation | Promise<EmailConfirmation>;
     resendConfirmationEmail(userId: string): boolean | Promise<boolean>;
     setUserPassword(input: SetUserPasswordInput): boolean | Promise<boolean>;
@@ -76,6 +117,8 @@ export interface IQuery {
     users(): User[] | Promise<User[]>;
     getUserById(id: string): User | Promise<User>;
     signedInUser(): User | Promise<User>;
+    getAllResellersByUser(userId: string): Merchant[] | Promise<Merchant[]>;
+    getAllMerchantsByUser(userId: string): Merchant[] | Promise<Merchant[]>;
     getPermissions(): Permission[] | Promise<Permission[]>;
     getPermissionsForUser(userId: string): Permission[] | Promise<Permission[]>;
     temp__(): boolean | Promise<boolean>;

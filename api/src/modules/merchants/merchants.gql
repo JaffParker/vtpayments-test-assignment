@@ -1,0 +1,49 @@
+type Mutation {
+  createMerchant(input: CreateMerchantInput!): Merchant!
+  createReseller(input: CreateResellerInput!): Merchant!
+}
+
+type Query{
+  getAllResellersByUser(userId:String!): [Merchant!]!
+  getAllMerchantsByUser(userId:String!): [Merchant!]!
+}
+
+
+type Merchant {
+  id: ID!
+  userId: String!
+  name: String!
+  isReseller: Boolean!
+  resellerId: String!
+  phone: String!
+  country: String!
+  state: String!
+  city: String!
+  address: String!
+  zipCode: String!
+}
+
+input CreateMerchantInput {
+  userId: String!
+  resellerId: String!
+  isReseller: Boolean!
+  name: String!
+  phone: String!
+  country: String!
+  state: String!
+  city: String!
+  address: String!
+  zipCode: String!
+}
+
+input CreateResellerInput {
+  userId: String!
+  isReseller: Boolean!
+  name: String!
+  phone: String!
+  country: String!
+  state: String!
+  city: String!
+  address: String!
+  zipCode: String!
+}
