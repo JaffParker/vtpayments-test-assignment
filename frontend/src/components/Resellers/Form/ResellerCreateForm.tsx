@@ -6,14 +6,13 @@ import { NameInput } from '../../Forms/Inputs/NameInput'
 import { TextInput } from '../../Forms/Inputs/TextInput'
 import React, { FC, Fragment, useContext } from 'react'
 import { SubmitButton } from '../../Forms/Inputs/SubmitButton'
-import { CreateMerchantInput } from '../../../../../api/src/types/Api'
+import { CreateResellerInput } from '../../../../../api/src/types/Api'
 import { MerchantErrors } from '../../../types/Errors/MerchantErrors'
-import { SelectResellerInput } from '../Input/SelectResellerInput'
 
-interface MerchantFormProps {
-  onSubmit: (values: CreateMerchantInput) => void
+interface ResellerFormProps {
+  onSubmit: (values: CreateResellerInput) => void
   onCancel?: () => void
-  initialValues?: Partial<CreateMerchantInput>
+  initialValues?: Partial<CreateResellerInput>
   submitting: boolean
   submitText?: string
   error?: MerchantErrors
@@ -21,18 +20,17 @@ interface MerchantFormProps {
 }
 const getErrorMessage = (error: MerchantErrors): string => {
   switch (error) {
-    case MerchantErrors.DuplicateMerchant:
-      return 'A Merchant with that name already exists'
+    case MerchantErrors.DuplicateReseller:
+      return 'A Reseller with that name already exists'
     default:
       return 'Something went wrong during the validation of this form'
   }
 }
 
-export const MerchantCreateForm: FC<MerchantFormProps> = ({
+export const ResellerCreateForm: FC<ResellerFormProps> = ({
   onSubmit,
   onCancel,
   error,
-  data,
   submitting,
   initialValues,
   submitText = 'Submit',
@@ -40,14 +38,12 @@ export const MerchantCreateForm: FC<MerchantFormProps> = ({
   const formDisabled = useContext(DisabledFormContext)
 
   return (
-    <Form<CreateMerchantInput> onSubmit={onSubmit}>
+    <Form<CreateResellerInput> onSubmit={onSubmit}>
       {() => (
         <Fragment>
           {error && (
             <span className="text-danger">{getErrorMessage(error)}</span>
           )}
-
-          {data && <span>Merchant created successfully</span>}
 
           <Row>
             <Col sm="12" md="6">
@@ -58,11 +54,6 @@ export const MerchantCreateForm: FC<MerchantFormProps> = ({
                   validate={required()}
                   initialValue={initialValues && initialValues.name}
                 />
-              </FormGroup>
-            </Col>
-            <Col sm="12" md="6">
-              <FormGroup>
-                <SelectResellerInput name="Select a reseller" />
               </FormGroup>
             </Col>
           </Row>

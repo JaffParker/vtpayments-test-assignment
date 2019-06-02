@@ -17,12 +17,13 @@ interface MerchantFormProps {
   submitting: boolean
   submitText?: string
   error?: MerchantErrors
+  data?: any
 }
 
 const getErrorMessage = (error: MerchantErrors): string => {
   switch (error) {
-    case MerchantErrors.DuplicateMerchant:
-      return 'A Merchant with that name already exists'
+    case MerchantErrors.ErrorUpdate:
+      return 'Something went wrong during the update of this form'
     default:
       return 'Something went wrong during the validation of this form'
   }
@@ -34,6 +35,7 @@ export const MerchantEditForm: FC<MerchantFormProps> = ({
   error,
   submitting,
   initialValues,
+  data,
   submitText = 'Submit',
 }) => {
   const formDisabled = useContext(DisabledFormContext)
@@ -45,15 +47,17 @@ export const MerchantEditForm: FC<MerchantFormProps> = ({
           {error && (
             <span className="text-danger">{getErrorMessage(error)}</span>
           )}
-
+          {data && <span>Merchant Edited successfully</span>}
           <Row>
             <Col sm="12" md="6">
               <FormGroup>
                 <Label>Name</Label>
                 <NameInput
+                  className={'form-control'}
                   name="name"
                   validate={required()}
                   initialValue={initialValues && initialValues.name}
+                  placeholder={initialValues && initialValues.name}
                 />
               </FormGroup>
             </Col>
@@ -73,6 +77,7 @@ export const MerchantEditForm: FC<MerchantFormProps> = ({
                   name="phone"
                   validate={required()}
                   initialValue={initialValues && initialValues.phone}
+                  placeholder={initialValues && initialValues.phone}
                 />
               </FormGroup>
             </Col>
@@ -85,6 +90,7 @@ export const MerchantEditForm: FC<MerchantFormProps> = ({
                   name="country"
                   validate={required()}
                   initialValue={initialValues && initialValues.country}
+                  placeholder={initialValues && initialValues.country}
                 />
               </FormGroup>
             </Col>
@@ -97,6 +103,7 @@ export const MerchantEditForm: FC<MerchantFormProps> = ({
                   name="state"
                   validate={required()}
                   initialValue={initialValues && initialValues.state}
+                  placeholder={initialValues && initialValues.state}
                 />
               </FormGroup>
             </Col>
@@ -109,6 +116,7 @@ export const MerchantEditForm: FC<MerchantFormProps> = ({
                   name="city"
                   validate={required()}
                   initialValue={initialValues && initialValues.city}
+                  placeholder={initialValues && initialValues.city}
                 />
               </FormGroup>
             </Col>
@@ -121,6 +129,7 @@ export const MerchantEditForm: FC<MerchantFormProps> = ({
                   name="address"
                   validate={required()}
                   initialValue={initialValues && initialValues.address}
+                  placeholder={initialValues && initialValues.address}
                 />
               </FormGroup>
             </Col>
@@ -133,6 +142,7 @@ export const MerchantEditForm: FC<MerchantFormProps> = ({
                   name="zipCode"
                   validate={required()}
                   initialValue={initialValues && initialValues.zipCode}
+                  placeholder={initialValues && initialValues.zipCode}
                 />
               </FormGroup>
             </Col>

@@ -1,7 +1,6 @@
 import React from 'react'
-import { ResellerContainer } from '../../Apps/Containers/ResellersContainer'
+import { MainResellerContainer } from '../../Apps/Containers/MainResellerContainer'
 
 export default function ResellersRoute(): JSX.Element {
-  return <ResellerContainer />
-  //return <span>Resellers</span>
+  return <MainResellerContainer />
 }

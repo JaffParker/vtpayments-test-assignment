@@ -8,9 +8,9 @@ import '../../../sass/main.scss'
 import Mutation from 'react-apollo/Mutation'
 import { CreateResellerInput } from '../../../../../api/src/types/Api'
 import { CreateReseller } from '../../../graphql/mutations/Reseller/CreateReseller'
-import { ResellerForm } from '../../Resellers/Form/ResellerForm'
+import { ResellerCreateForm } from '../Form/ResellerCreateForm'
 
-export const ResellerContainer: FC = () => {
+export const CreateResellerContainer: FC = () => {
   const { createReseller } = useContext(ResellerContext) as ResellerContext
   const { user } = useContext(AuthContext) as UserAuthState
   return (
@@ -33,7 +33,7 @@ export const ResellerContainer: FC = () => {
             }
             return (
               <Fragment>
-                <ResellerForm
+                <ResellerCreateForm
                   submitting={loading}
                   onSubmit={onSubmit}
                   error={error ? error.graphQLErrors[0].message : undefined}

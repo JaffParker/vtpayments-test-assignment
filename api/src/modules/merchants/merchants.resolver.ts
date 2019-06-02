@@ -28,13 +28,88 @@ export class MerchantsResolver {
     }
     @Query()
     async getMerchantsByUser(@Args('userId') userId: string, @Args('merchantId') merchantId: string): Promise<Merchant> {
-        console.log("getMerchantsByUser")
-        console.log(userId)
-        console.log(merchantId)
         let result =  await this.merchants.getMerchantsByUser(userId, merchantId)
-        console.log(result)
         return result
     }
+    @Query()
+    async getResellersByUser(@Args('userId') userId: string, @Args('resellerId') resellerId: string): Promise<Merchant>{
+        let result =  await this.merchants.getResellersByUser(userId, resellerId)
+        return result
+    }
+
+    @Mutation()
+    async editMerchant(
+
+        @Args('input'){
+            id,
+            userId,
+            resellerId,
+            name,
+            phone,
+            country,
+            state,
+            city,
+            address,
+            zipCode
+        }
+    ):Promise<Merchant>{
+        try{
+            return await this.merchants.editMerchant({
+                id,
+                userId,
+                name,
+                resellerId,
+                phone,
+                country,
+                state,
+                city,
+                address,
+                zipCode,
+            })
+        }catch(error){
+            if (error instanceof InputError) {
+                throw new UserInputError(error.message)
+            } else {
+                throw error
+            }
+        }
+    }
+
+    @Mutation()
+    async editReseller(
+        @Args('input'){
+            id,
+            userId,
+            name,
+            phone,
+            country,
+            state,
+            city,
+            address,
+            zipCode
+        }
+    ){
+        try{
+            return await this.merchants.editReseller({
+                id,
+                userId,
+                name,
+                phone,
+                country,
+                state,
+                city,
+                address,
+                zipCode,
+            })
+        }catch(error){
+            if (error instanceof InputError) {
+                throw new UserInputError(error.message)
+            } else {
+                throw error
+            }
+        }
+    }
+
 
     @Mutation()
     async createMerchant(
@@ -106,6 +181,5 @@ export class MerchantsResolver {
                 throw error
             }
         }
-
     };
 }

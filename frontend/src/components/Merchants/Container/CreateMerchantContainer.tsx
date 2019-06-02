@@ -24,18 +24,20 @@ export const CreateMerchantContainer = () => {
           createMerchant(merchant)
         }}
       >
-        {(createMerchant, { loading, error }) => {
+        {(createMerchant, { loading, error, data }) => {
           const onSubmit = (values: CreateMerchantInput): void => {
             values.userId = user.id
             values.isReseller = false
             createMerchant({ variables: { input: values } })
           }
+
           return (
             <Fragment>
               <MerchantCreateForm
                 submitting={loading}
                 onSubmit={onSubmit}
                 error={error ? error.graphQLErrors[0].message : undefined}
+                data={data}
               />
             </Fragment>
           )

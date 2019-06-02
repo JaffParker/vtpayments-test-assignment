@@ -3,21 +3,21 @@ import Query from 'react-apollo/Query'
 import { AuthContext } from '../../../contexts/AuthContext'
 import { UserAuthState } from '../../../reducers/auth'
 import { SelectInput } from '../../Forms/Inputs/SelectInput'
-import { GetAllMerchantsByUser } from '../../../graphql/queries/Merchant/GetAllResellersByUser'
 import { required } from '../../../helpers/validator'
+import { GetAllResellersByUser } from '../../../graphql/queries/Reseller/GetAllResellersByUser'
 
-export const SelectMerchantInput: FC<any> = ({ ...props }) => {
+export const SelectEditResellerInput: FC<any> = ({ ...props }) => {
   const { user } = useContext(AuthContext) as UserAuthState
   let userId = user.id
 
   return (
-    <Query query={GetAllMerchantsByUser} variables={{ userId }}>
+    <Query query={GetAllResellersByUser} variables={{ userId }}>
       {({ loading, error, data }) => {
         if (loading || error) return null
 
         let a: any[] = []
 
-        data.getAllMerchantsByUser.map(e => {
+        data.getAllResellersByUser.map(e => {
           a.push({
             value: e.id,
             label: e.name,
@@ -27,7 +27,7 @@ export const SelectMerchantInput: FC<any> = ({ ...props }) => {
         return (
           <Fragment>
             <SelectInput
-              onMouseUp={props.onMerchantSelected}
+              onMouseUp={props.onResellerSelected}
               name="id"
               validate={required()}
               initialValue="0"

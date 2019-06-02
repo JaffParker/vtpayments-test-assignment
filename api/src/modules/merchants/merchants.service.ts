@@ -7,9 +7,13 @@ import {InputError} from "../../errors/InputError";
 import {MerchantCreated} from "./merchants.event";
 import {MerchantErrors} from "../../types/Errors/MerchantErrors";
 
+type addressInput = 'phone'|'country'|'state'|'city'|'address'|'zipCode'
+type baseMerchant = 'name'|'userId'
 
-type CreateMerchantInput = Pick<Merchant, 'name'|'userId'|'resellerId'|'isReseller'|'phone'|'country'|'state'|'city'|'address'|'zipCode'>
-type CreateResellerInput = Pick<Merchant, 'name'|'userId'|'isReseller'|'phone'|'country'|'state'|'city'|'address'|'zipCode'>
+type CreateMerchantInput = Pick<Merchant, baseMerchant|'resellerId'|'isReseller'| addressInput>
+type CreateResellerInput = Pick<Merchant, baseMerchant |'isReseller'|addressInput>
+type EditMerchantInput = Pick<Merchant, baseMerchant | 'id' | 'resellerId'|addressInput>
+type EditResellerInput = Pick<Merchant, baseMerchant | 'id' | addressInput>
 
 @Injectable()
 export class MerchantsService {
@@ -38,6 +42,31 @@ export class MerchantsService {
         return merchant
     }
 
+    async editMerchant(input: EditMerchantInput): Promise<Merchant> {
+        try{
+            let id= input.id
+            await this.merchantRepo.update(id, input)
+            let merchant = await this.merchantRepo.findOne({where:{id:input.id}})
+            this.events.emit(new MerchantCreated(), merchant)
+            return merchant
+        }
+        catch(error){
+            throw new InputError(MerchantErrors.ErrorUpdate)
+        }
+    }
+
+    async editReseller(input: EditResellerInput): Promise<Merchant>{
+        try{
+            let id= input.id
+            await this.merchantRepo.update(id, input)
+            let merchant = await this.merchantRepo.findOne({where:{id:input.id}})
+            this.events.emit(new MerchantCreated(), merchant)
+            return merchant
+        }
+        catch(error){
+            throw new InputError(MerchantErrors.ErrorUpdate)
+        }
+    }
 
     async getAllResellers(): Promise<Merchant[]> {
         return await this.merchantRepo.find({ where: { isReseller: true } })
@@ -51,8 +80,13 @@ export class MerchantsService {
         return await this.merchantRepo.findOne({ where: { id: merchantId, userId: userId } })
     }
 
+    async getResellersByUser(userId, resellerId): Promise<Merchant>{
+        return await this.merchantRepo.findOne({ where: { id: resellerId, userId: userId } })
+    }
+
     async getAllResellersByUser(userId): Promise<Merchant[]> {
-        return await this.merchantRepo.find({ where: { isReseller: true, userId: userId } })
+        let merchant = await this.merchantRepo.find({ where: { isReseller: true, userId: userId } })
+        return merchant
     }
 
     async getAllMerchantsByUser(userId): Promise<Merchant[]> {
@@ -62,5 +96,4 @@ export class MerchantsService {
     async getById(id: string): Promise<Merchant> {
         return await this.merchantRepo.findOne(id)
     }
-
 }

@@ -1,7 +1,10 @@
 import Collapsible from 'react-collapsible'
 import { Fragment, useContext, useState } from 'react'
 import { SelectEditMerchant } from '../Input/SelectEditMerchant'
-import { CreateMerchantInput } from '../../../../../api/src/types/Api'
+import {
+  CreateMerchantInput,
+  EditMerchantInput,
+} from '../../../../../api/src/types/Api'
 import { EditMerchant } from '../../../graphql/mutations/Merchant/EditMerchant'
 import { MerchantEditForm } from '../Form/MerchantEditForm'
 import React from 'react'
@@ -43,19 +46,24 @@ export const EditMerchantContainer = () => {
             onMerchantSelected={onMerchantSelected}
           />
           <Mutation<
-            { editMerchant: CreateMerchantInput },
-            { input: CreateMerchantInput }
+            { editMerchant: EditMerchantInput },
+            { input: EditMerchantInput }
           >
             mutation={EditMerchant}
             onCompleted={({ editMerchant: merchant }) => {
               editMerchant(merchant)
             }}
           >
-            {(editMerchant, { loading, error }) => {
-              const onSubmit = (values: CreateMerchantInput): void => {
+            {(editMerchant, { loading, error, data }) => {
+              const onSubmit = (values: EditMerchantInput): void => {
                 values.userId = user.id
+                values.id = merchantToEdit.toString()
                 editMerchant({ variables: { input: values } })
               }
+
+              const onEditData = data
+              const onEditError = error
+
               return (
                 <Fragment>
                   <Query
@@ -68,6 +76,12 @@ export const EditMerchantContainer = () => {
                           initialValues={data.getMerchantsByUser}
                           submitting={loading}
                           onSubmit={onSubmit}
+                          data={onEditData}
+                          error={
+                            onEditError
+                              ? onEditError.graphQLErrors[0].message
+                              : undefined
+                          }
                         />
                       )
                     }}

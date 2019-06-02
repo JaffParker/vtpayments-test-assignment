@@ -2,12 +2,14 @@ type Mutation {
   createMerchant(input: CreateMerchantInput!): Merchant!
   createReseller(input: CreateResellerInput!): Merchant!
   editMerchant(input: EditMerchantInput!):Merchant!
+  editReseller(input: EditResellerInput!):Merchant!
 }
 
 type Query{
   getAllResellersByUser(userId:String!): [Merchant!]!
   getAllMerchantsByUser(userId:String!): [Merchant!]!
   getMerchantsByUser(userId:String!, merchantId:String): Merchant!
+  getResellersByUser(userId:String!, resellerId:String): Merchant!
 }
 
 
@@ -39,9 +41,9 @@ input CreateMerchantInput {
 }
 
 input EditMerchantInput{
+  id: ID!
   userId: String!
   resellerId: String!
-  isReseller: Boolean!
   name: String!
   phone: String!
   country: String!
@@ -51,6 +53,17 @@ input EditMerchantInput{
   zipCode: String!
 }
 
+input EditResellerInput{
+      id: ID!
+      userId: String!
+      name: String!
+      phone: String!
+      country: String!
+      state: String!
+      city: String!
+      address: String!
+      zipCode: String!
+}
 
 
 input CreateResellerInput {

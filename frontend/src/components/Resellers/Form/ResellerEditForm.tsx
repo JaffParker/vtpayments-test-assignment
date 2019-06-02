@@ -6,30 +6,33 @@ import { NameInput } from '../../Forms/Inputs/NameInput'
 import { TextInput } from '../../Forms/Inputs/TextInput'
 import React, { FC, Fragment, useContext } from 'react'
 import { SubmitButton } from '../../Forms/Inputs/SubmitButton'
-import { CreateResellerInput } from '../../../../../api/src/types/Api'
+import { EditResellerInput } from '../../../../../api/src/types/Api'
 import { MerchantErrors } from '../../../types/Errors/MerchantErrors'
 
 interface ResellerFormProps {
-  onSubmit: (values: CreateResellerInput) => void
+  onSubmit: (values: EditResellerInput) => void
   onCancel?: () => void
-  initialValues?: Partial<CreateResellerInput>
+  initialValues?: Partial<EditResellerInput>
   submitting: boolean
   submitText?: string
   error?: MerchantErrors
+  data?: any
 }
+
 const getErrorMessage = (error: MerchantErrors): string => {
   switch (error) {
-    case MerchantErrors.DuplicateReseller:
-      return 'A Reseller with that name already exists'
+    case MerchantErrors.ErrorUpdate:
+      return 'Something went wrong during the update of this form'
     default:
       return 'Something went wrong during the validation of this form'
   }
 }
 
-export const ResellerForm: FC<ResellerFormProps> = ({
+export const ResellerEditForm: FC<ResellerFormProps> = ({
   onSubmit,
   onCancel,
   error,
+  data,
   submitting,
   initialValues,
   submitText = 'Submit',
@@ -37,21 +40,23 @@ export const ResellerForm: FC<ResellerFormProps> = ({
   const formDisabled = useContext(DisabledFormContext)
 
   return (
-    <Form<CreateResellerInput> onSubmit={onSubmit}>
+    <Form<EditResellerInput> onSubmit={onSubmit}>
       {() => (
         <Fragment>
           {error && (
             <span className="text-danger">{getErrorMessage(error)}</span>
           )}
-
+          {data && <span>Merchant Edited successfully</span>}
           <Row>
             <Col sm="12" md="6">
               <FormGroup>
                 <Label>Name</Label>
                 <NameInput
+                  className={'form-control'}
                   name="name"
                   validate={required()}
                   initialValue={initialValues && initialValues.name}
+                  placeholder={initialValues && initialValues.name}
                 />
               </FormGroup>
             </Col>
@@ -64,6 +69,7 @@ export const ResellerForm: FC<ResellerFormProps> = ({
                   name="phone"
                   validate={required()}
                   initialValue={initialValues && initialValues.phone}
+                  placeholder={initialValues && initialValues.phone}
                 />
               </FormGroup>
             </Col>
@@ -76,6 +82,7 @@ export const ResellerForm: FC<ResellerFormProps> = ({
                   name="country"
                   validate={required()}
                   initialValue={initialValues && initialValues.country}
+                  placeholder={initialValues && initialValues.country}
                 />
               </FormGroup>
             </Col>
@@ -88,6 +95,7 @@ export const ResellerForm: FC<ResellerFormProps> = ({
                   name="state"
                   validate={required()}
                   initialValue={initialValues && initialValues.state}
+                  placeholder={initialValues && initialValues.state}
                 />
               </FormGroup>
             </Col>
@@ -100,6 +108,7 @@ export const ResellerForm: FC<ResellerFormProps> = ({
                   name="city"
                   validate={required()}
                   initialValue={initialValues && initialValues.city}
+                  placeholder={initialValues && initialValues.city}
                 />
               </FormGroup>
             </Col>
@@ -112,6 +121,7 @@ export const ResellerForm: FC<ResellerFormProps> = ({
                   name="address"
                   validate={required()}
                   initialValue={initialValues && initialValues.address}
+                  placeholder={initialValues && initialValues.address}
                 />
               </FormGroup>
             </Col>
@@ -124,6 +134,7 @@ export const ResellerForm: FC<ResellerFormProps> = ({
                   name="zipCode"
                   validate={required()}
                   initialValue={initialValues && initialValues.zipCode}
+                  placeholder={initialValues && initialValues.zipCode}
                 />
               </FormGroup>
             </Col>

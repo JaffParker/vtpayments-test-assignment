@@ -39,9 +39,21 @@ export interface CreateResellerInput {
 }
 
 export interface EditMerchantInput {
+    id: string;
     userId: string;
     resellerId: string;
-    isReseller: boolean;
+    name: string;
+    phone: string;
+    country: string;
+    state: string;
+    city: string;
+    address: string;
+    zipCode: string;
+}
+
+export interface EditResellerInput {
+    id: string;
+    userId: string;
     name: string;
     phone: string;
     country: string;
@@ -109,15 +121,16 @@ export interface IMutation {
     createMerchant(input: CreateMerchantInput): Merchant | Promise<Merchant>;
     createReseller(input: CreateResellerInput): Merchant | Promise<Merchant>;
     editMerchant(input: EditMerchantInput): Merchant | Promise<Merchant>;
+    editReseller(input: EditResellerInput): Merchant | Promise<Merchant>;
     createUser(input: UserInput): User | Promise<User>;
     modifyUser(id: string, input: UserInput): User | Promise<User>;
     deactivateUser(id: string): User | Promise<User>;
     reactivateUser(id: string): User | Promise<User>;
     confirmEmail(token: string): EmailConfirmation | Promise<EmailConfirmation>;
     resendConfirmationEmail(userId: string): boolean | Promise<boolean>;
-    setUserPassword(input: SetUserPasswordInput): boolean | Promise<boolean>;
     grantPermissionToUser(userId: string, permissionId: string): boolean | Promise<boolean>;
     revokePermission(userId: string, permissionId: string): boolean | Promise<boolean>;
+    setUserPassword(input: SetUserPasswordInput): boolean | Promise<boolean>;
 }
 
 export interface Permission {
@@ -131,6 +144,7 @@ export interface IQuery {
     getAllResellersByUser(userId: string): Merchant[] | Promise<Merchant[]>;
     getAllMerchantsByUser(userId: string): Merchant[] | Promise<Merchant[]>;
     getMerchantsByUser(userId: string, merchantId?: string): Merchant | Promise<Merchant>;
+    getResellersByUser(userId: string, resellerId?: string): Merchant | Promise<Merchant>;
     users(): User[] | Promise<User[]>;
     getUserById(id: string): User | Promise<User>;
     signedInUser(): User | Promise<User>;
