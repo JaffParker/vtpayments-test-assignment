@@ -47,6 +47,10 @@ export class MerchantsService {
         return await this.merchantRepo.find({ where: { isReseller: false } })
     }
 
+    async getMerchantsByUser(userId, merchantId): Promise<Merchant> {
+        return await this.merchantRepo.findOne({ where: { id: merchantId, userId: userId } })
+    }
+
     async getAllResellersByUser(userId): Promise<Merchant[]> {
         return await this.merchantRepo.find({ where: { isReseller: true, userId: userId } })
     }

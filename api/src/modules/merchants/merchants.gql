@@ -7,6 +7,7 @@ type Mutation {
 type Query{
   getAllResellersByUser(userId:String!): [Merchant!]!
   getAllMerchantsByUser(userId:String!): [Merchant!]!
+  getMerchantsByUser(userId:String!, merchantId:String): Merchant!
 }
 
 

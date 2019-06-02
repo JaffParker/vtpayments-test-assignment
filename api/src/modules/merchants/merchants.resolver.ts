@@ -26,6 +26,15 @@ export class MerchantsResolver {
     async getAllResellersByUser(@Args('userId') userId: string): Promise<Merchant[]> {
         return await this.merchants.getAllResellersByUser(userId)
     }
+    @Query()
+    async getMerchantsByUser(@Args('userId') userId: string, @Args('merchantId') merchantId: string): Promise<Merchant> {
+        console.log("getMerchantsByUser")
+        console.log(userId)
+        console.log(merchantId)
+        let result =  await this.merchants.getMerchantsByUser(userId, merchantId)
+        console.log(result)
+        return result
+    }
 
     @Mutation()
     async createMerchant(

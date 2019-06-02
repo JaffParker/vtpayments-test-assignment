@@ -15,7 +15,7 @@ export class Merchant {
   @Column({ default: false })
   isReseller: boolean
 
-  @Column({ nullable: true })
+  @Column({ default: "0" })
   resellerId: string
 
   @Column({ nullable: true })

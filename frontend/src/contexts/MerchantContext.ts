@@ -5,7 +5,7 @@ import {
 } from '../../../api/src/types/Api'
 
 export interface MerchantContext {
-  createMerchant: (merchant: CreateMerchantInput) => void // enforce implementation of createMerchant
+  createMerchant: (merchant: CreateMerchantInput) => void
   editMerchant: (merchant: EditMerchantInput) => void
 }
 export type MerchantContextState = MerchantContext

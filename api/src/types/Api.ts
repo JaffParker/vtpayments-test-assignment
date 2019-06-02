@@ -115,9 +115,9 @@ export interface IMutation {
     reactivateUser(id: string): User | Promise<User>;
     confirmEmail(token: string): EmailConfirmation | Promise<EmailConfirmation>;
     resendConfirmationEmail(userId: string): boolean | Promise<boolean>;
+    setUserPassword(input: SetUserPasswordInput): boolean | Promise<boolean>;
     grantPermissionToUser(userId: string, permissionId: string): boolean | Promise<boolean>;
     revokePermission(userId: string, permissionId: string): boolean | Promise<boolean>;
-    setUserPassword(input: SetUserPasswordInput): boolean | Promise<boolean>;
 }
 
 export interface Permission {
@@ -130,6 +130,7 @@ export interface Permission {
 export interface IQuery {
     getAllResellersByUser(userId: string): Merchant[] | Promise<Merchant[]>;
     getAllMerchantsByUser(userId: string): Merchant[] | Promise<Merchant[]>;
+    getMerchantsByUser(userId: string, merchantId?: string): Merchant | Promise<Merchant>;
     users(): User[] | Promise<User[]>;
     getUserById(id: string): User | Promise<User>;
     signedInUser(): User | Promise<User>;

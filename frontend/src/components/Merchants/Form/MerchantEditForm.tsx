@@ -6,18 +6,19 @@ import { NameInput } from '../../Forms/Inputs/NameInput'
 import { TextInput } from '../../Forms/Inputs/TextInput'
 import React, { FC, Fragment, useContext } from 'react'
 import { SubmitButton } from '../../Forms/Inputs/SubmitButton'
-import { CreateMerchantInput } from '../../../../../api/src/types/Api'
+import { EditMerchantInput } from '../../../../../api/src/types/Api'
 import { MerchantErrors } from '../../../types/Errors/MerchantErrors'
 import { SelectResellerInput } from '../Input/SelectResellerInput'
 
 interface MerchantFormProps {
-  onSubmit: (values: CreateMerchantInput) => void
+  onSubmit: (values: EditMerchantInput) => void
   onCancel?: () => void
-  initialValues?: Partial<CreateMerchantInput>
+  initialValues?: Partial<EditMerchantInput>
   submitting: boolean
   submitText?: string
   error?: MerchantErrors
 }
+
 const getErrorMessage = (error: MerchantErrors): string => {
   switch (error) {
     case MerchantErrors.DuplicateMerchant:
@@ -27,7 +28,7 @@ const getErrorMessage = (error: MerchantErrors): string => {
   }
 }
 
-export const MerchantForm: FC<MerchantFormProps> = ({
+export const MerchantEditForm: FC<MerchantFormProps> = ({
   onSubmit,
   onCancel,
   error,
@@ -38,7 +39,7 @@ export const MerchantForm: FC<MerchantFormProps> = ({
   const formDisabled = useContext(DisabledFormContext)
 
   return (
-    <Form<CreateMerchantInput> onSubmit={onSubmit}>
+    <Form<EditMerchantInput> onSubmit={onSubmit}>
       {() => (
         <Fragment>
           {error && (
@@ -56,13 +57,11 @@ export const MerchantForm: FC<MerchantFormProps> = ({
                 />
               </FormGroup>
             </Col>
+          </Row>
+          <Row>
             <Col sm="12" md="6">
               <FormGroup>
-                <SelectResellerInput
-                  name="Select a reseller"
-                  validate={required()}
-                  initialValue={null}
-                />
+                <SelectResellerInput name="Select a reseller" />
               </FormGroup>
             </Col>
           </Row>

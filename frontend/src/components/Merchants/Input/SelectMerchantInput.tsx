@@ -4,6 +4,7 @@ import { AuthContext } from '../../../contexts/AuthContext'
 import { UserAuthState } from '../../../reducers/auth'
 import { SelectInput } from '../../Forms/Inputs/SelectInput'
 import { GetAllMerchantsByUser } from '../../../graphql/queries/Merchant/GetAllResellersByUser'
+import { required } from '../../../helpers/validator'
 
 export const SelectMerchantInput: FC<any> = ({ ...props }) => {
   const { user } = useContext(AuthContext) as UserAuthState
@@ -26,8 +27,10 @@ export const SelectMerchantInput: FC<any> = ({ ...props }) => {
         return (
           <Fragment>
             <SelectInput
-              onChange={props.selectOnChange}
+              onChange={props.onMerchantSelected}
               name="id"
+              validate={required()}
+              initialValue="0"
               placeholder={props.name}
               options={a}
             />
