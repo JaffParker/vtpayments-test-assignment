@@ -5,6 +5,9 @@ export const UserFragments = {
     fragment UserProfile on User {
       email
       active
+      merchant {
+        id
+      }
       profile {
         firstName
         lastName

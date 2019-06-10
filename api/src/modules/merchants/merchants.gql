@@ -1,0 +1,28 @@
+type Mutation {
+  createMerchant(input: MerchantInput!): Merchant!
+}
+
+input MerchantContactInfoInput {
+  phone: String!
+  address: AddressInput!
+}
+
+type MerchantContactInfo {
+  phone: String!
+  address: Address!
+}
+
+input MerchantInput {
+  name: String
+  isReseller: Boolean
+  resellerId: String!
+  contactInfo: MerchantContactInfoInput!
+}
+
+type Merchant {
+  id: ID!
+  name: String
+  isReseller: Boolean
+  resellerId: String!
+  contactInfo: MerchantContactInfo!
+}

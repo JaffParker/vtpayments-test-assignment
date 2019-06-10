@@ -14,7 +14,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User) private userRepo: Repository<User>,
     private events: EventEmitter,
-  ) {}
+  ) { }
 
   async getAll(): Promise<User[]> {
     return await this.userRepo.find()
@@ -24,8 +24,8 @@ export class UsersService {
     return await this.userRepo.findOne(id)
   }
 
-  async getByEmail(email: string): Promise<User> {
-    return await this.userRepo.findOne({ email })
+  getByEmail(email: string): Promise<User> {
+    return this.userRepo.findOne({ email }, { relations: ['merchant'] })
   }
 
   async userExists(params: Partial<User>): Promise<boolean> {

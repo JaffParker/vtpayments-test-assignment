@@ -26,8 +26,6 @@ export const Navbar: FC<NavbarProps> = ({ location, UserMenu }) => (
       >
         <Nav navbar>
           <Item label="Merchants" to="/merchants" />
-          <Item label="Resellers" to="/resellers" />
-
           <UserMenu />
         </Nav>
       </UncontrolledCollapse>

@@ -1,6 +1,7 @@
 import React from 'react'
+import { MerchantContainer } from '../../Layout/Containers/MerchantContainer'
+
 
 export default function ResellersRoute(): JSX.Element {
-  // return <ResellersContainer />
-  return <span>Resellers</span>
+  return <MerchantContainer />
 }

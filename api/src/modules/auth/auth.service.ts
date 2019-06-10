@@ -14,7 +14,7 @@ export class AuthService {
     private users: UsersService,
     private jwt: JwtService,
     private password: PasswordService,
-  ) {}
+  ) { }
 
   async getUser(email: string, password: string): Promise<User> {
     const user = await this.users.getByEmail(email)
